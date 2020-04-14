@@ -1,2 +1,3 @@
 # Project exclude paths
-/build/
+/build_debug/
+/doc/html
