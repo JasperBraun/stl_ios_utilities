@@ -1,5 +1,4 @@
-Quick template for C++ projects with CMake.
+# stl_ios_utilities
 
-Add directories "src" and "include" and have at it!
-
-Make sure to add libraries, test and source files as well as include directories as outlined in the comments of the CMakeLists.txt files in the project root, the "lib" and the "test" directories.
+A C++ library in which helper functions and classes to interact with the
+standard library input and output streams are collected.
