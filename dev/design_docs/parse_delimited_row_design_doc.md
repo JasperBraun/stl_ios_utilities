@@ -1,6 +1,10 @@
 # Design Document for `parse_delimited_row`
 
-"[TOC]"
+* [Summary](#summary)
+* [Minimum required functionality](#minimum-required-functionality)
+* [Design decisions](#design-decisions)
+* [Options](#options)
+* [Usage example](#usage-example)
 
 Created May 01, 2020.
 
