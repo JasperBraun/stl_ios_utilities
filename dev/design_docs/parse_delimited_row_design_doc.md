@@ -1,4 +1,4 @@
-# Design Document for `stl_ios_utilities::parse_delimited_row`
+# Design Document for `parse_delimited_row`
 
 - [Design Document for `stl_ios_utilities::parse_delimited_row`](#design-document-for--stl-ios-utilities--parse-delimited-row-)
   * [Summary](#summary)
@@ -6,9 +6,6 @@
   * [Design decisions](#design-decisions)
   * [Options](#options)
   * [Usage example](#usage-example)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 Created May 01, 2020.
 
