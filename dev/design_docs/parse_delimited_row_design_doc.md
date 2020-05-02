@@ -29,9 +29,6 @@ row must be enforcable.
 * Implement ability to pass custom functions to `parse_delimited_row` to be
   applied to each field for additional parsing. Should default to identity
   function.
-* Implement two overloads for each supported format; one where single field
-  parsing function is specified to be applied to all fields and one where a
-  parsing function is specified for every field, separately.
 * Minimum column number enforcement mechanism should throw exception when
   violated.
 * Maximum column number enforcement mechanism should either throw exception, or
@@ -45,6 +42,14 @@ row must be enforcable.
 Options for the `parse_delimited_row` function are passed to the function as in
 the form of a `ParseDelimitedRowOptions` object. This object is implemented as a
 `struct` with each option represented by one of its members.
+* `delimiter`: sets the delimiting character in the input stream.
+* `min_fields`: sets the minimum number of fields expected to be read.
+* `max_fields`: sets the maximum number of fields expected to be read.
+* `ignore_additional_fields`: determines whether additional fields are
+  ignored when encountered, or whether an exception is thrown instead.
+* `field_parsers`: a map from integers to function pointers indicating which
+  field-parsing function should be applied to which column; column count starts
+  at 0 and if no parser is assigned for a column, field is not parsed.
 
 ## Usage example
 Here is an example of the intended usage of the `parse_delimited_row` function
@@ -91,5 +96,5 @@ exception is thrown because the minimum field number was violated.
 ```
  foo bar baz
  one  two  three
-
+/* exception occurs here */
 ```
