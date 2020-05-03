@@ -18,6 +18,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+/** @file parse_delimited_row.h
+ * @brief [brief description]
+ * 
+ * Details.
+ */
+
+/** @fn parse_delimited_row(std::istream* is, std::vector<std::string>* row, const ParseDelimitedRowOptions& options = ParseDelimitedRowOptions{})
+ * @brief function
+ * 
+ * @param is some details.
+ */
+
 #ifndef STL_IOS_UTILITIES_PARSE_DELIMTED_ROW_H_
 #define STL_IOS_UTILITIES_PARSE_DELIMTED_ROW_H_
 
@@ -28,8 +40,30 @@
 #include <unordered_map>
 #include <vector>
 
+/**
+ * @namespace stl_ios_utilities
+ *  * `parse_delimited_row` reads a row of delimted data from a `std::istream`
+ *    object and parses field values.
+ */
 namespace stl_ios_utilities {
 
+/**
+ * @brief Stores options for the **parse_delimited_row** function.
+ * 
+ * * **delimiter** defines the field-separator in the input data. *Default:*
+ *      '\t'.
+ * * **min_fields** defines the minimum number of fields
+ *      `parse_delimited_row` will look for; if fewer fields are read
+ *      before the next newline character, an exception of type
+ *      `stl_ios_utilities::MissingFields` is thrown.
+ * * **max_fields** defines the maximum number of fields
+ *      `parse_delimited_row` will look for; if more fields are read before
+ *      the next newline character, and if `ignore_additional_fields` is
+ *      set to `true`, an exception of type
+ *      `stl_ios_utilities::UnexpectedFields` is thrown. If set to -1 (default)
+ *      no maximum field number is enforced.
+ * * **ignore_additional_fields**
+ */
 struct ParseDelimitedRowOptions {
   char delimiter{'\t'};
   int min_fields{-1};
