@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 
 # main project
-#[[project(<PROJECT_NAME>)]]
+project(stl_ios_utilities)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -28,10 +28,8 @@ target_include_directories(<LIB_NAME> PUBLIC
 target_link_libraries(<LIB_NAME> PRIVATE <LIB1>)
 ]]
 
-#[[
 # unit tests
 include(CTest)
 project(<TEST_PROJECT_NAME>)
 
 add_subdirectory(test)
-]]

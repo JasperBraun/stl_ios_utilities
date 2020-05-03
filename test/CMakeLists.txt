@@ -30,14 +30,12 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
     include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
-#[[
 # Now simply link against gtest or gtest_main as needed. Eg
-add_executable(<TEST_NAME>
-        "${PROJECT_SOURCE_DIR}/test/<TEST_FILE_NAME>.cpp"
-        "${PROJECT_SOURCE_DIR}/src/<SRC1>.cpp")
-target_include_directories(<TEST_NAME> PUBLIC
+add_executable(parse_delimited_row_test
+        "${PROJECT_SOURCE_DIR}/test/parse_delimited_row_test.cc"
+        "${PROJECT_SOURCE_DIR}/src/parse_delimited_row.cc")
+target_include_directories(parse_delimited_row_test PUBLIC
         "${PROJECT_SOURCE_DIR}/include"
-        "${PROJECT_SOURCE_DIR}/lib/<LIB1>/include")
-target_link_libraries(<TEST_NAME> gtest_main <LIB1>)
-add_test(NAME <TEST_NAME> COMMAND <TEST_COMMAND_NAME>)
-]]
+        #[["${PROJECT_SOURCE_DIR}/lib/<LIB1>/include"]])
+target_link_libraries(parse_delimited_row_test gtest_main)
+add_test(NAME parse_delimited_row_test COMMAND parse_delimited_row_test)

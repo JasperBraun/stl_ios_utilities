@@ -36,6 +36,13 @@ row must be enforcable.
 * Options are provided with a `ParseDelimitedRowOptions` object as argument
   which is implemented as `struct` with default values for each member; that
   way, more options can be added without breaking API.
+  * Alternatively, the `parse_delimited_row` free function could have been
+    implemented as a functor and its options as data members of the functor; I
+    chose to implement it as free function with a `struct` defining the options
+    passed as parameter to avoid having to construct an object before being able
+    to apply the `()` operator when using default parameter values. While I have
+    a feeling that this approach is the less common approach, I don't see a
+    major disadvantage and will proceed with it.
 
 ## Options
 

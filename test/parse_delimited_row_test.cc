@@ -53,11 +53,12 @@ protected:
   std::istringstream iss{};
   std::vector<std::vector<std::string>> expected{}, result{};
 
+  void SetUp() override {};
+
   void SetUp(std::string&& data,
-             std::initializer_list<std::initializer_list<std::string>> data
-             ) override {
+             std::initializer_list<std::initializer_list<std::string>> rows) {
     iss.str(data);
-    for (std::initializer_list<std::string>& row : data) {
+    for (const std::initializer_list<std::string>& row : rows) {
       expected.push_back(std::vector<std::string>{row});
     }
     return;
@@ -65,9 +66,10 @@ protected:
 
   void read_data() {
     std::vector<std::string> row;
-    while (stl_ios_utilities::parse_delimited_row(iss, row, options)) {
+    while (stl_ios_utilities::parse_delimited_row(&iss, &row, options)) {
       result.push_back(row);
     }
+    result.push_back(row);
     return;
   }
 
@@ -81,7 +83,7 @@ protected:
       ASSERT_EQ((*expected_it).size(), (*result_it).size());
       expected_row_it = (*expected_it).begin();
       result_row_it = (*result_it).begin();
-      while (result_row_it != (*result_it).size()) {
+      while (result_row_it != (*result_it).end()) {
         EXPECT_EQ((*expected_row_it), (*result_row_it));
         expected_row_it++;
         result_row_it++;
@@ -131,7 +133,8 @@ TEST_F(ParseDelimitedRowTest, unexpected_min_fields) {
   try {
     read_data();
   } catch (const stl_ios_utilities::MissingFields& e) {
-    EXPECT_EQ(e.what(), "missing column 3 in row 3 of input data.");
+    EXPECT_STREQ(e.what(), "missing field(s) in input data; "
+                           "detected only 2 out of 3 fields.");
   }
   compare_data();
 }
@@ -156,10 +159,11 @@ TEST_F(ParseDelimitedRowTest, unexpected_ignore_additional_fields) {
           {"foo", "bar"}
         });
   options.max_fields = 2;
+  options.ignore_additional_fields = false;
   try {
     read_data();
   } catch (const stl_ios_utilities::UnexpectedFields& e) {
-    EXPECT_EQ(e.what(), "additional field(s) in row 2 of input data.");
+    EXPECT_STREQ(e.what(), "additional field(s) in input data.");
   }
   compare_data();
 }
@@ -172,7 +176,7 @@ TEST_F(ParseDelimitedRowTest, expected_field_parsers) {
           {"one", " two _parsed", " three"},
           {"x", "y_parsed", "z"}
         });
-  options.field_parsers[1] = [](std::string* s){s.append("_parsed");};
+  options.field_parsers[2] = [](std::string* s){s->append("_parsed");};
   read_data();
   compare_data();
 }

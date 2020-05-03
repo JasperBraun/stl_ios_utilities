@@ -30,24 +30,24 @@
 
 namespace stl_ios_utilities {
 
+struct ParseDelimitedRowOptions {
+  char delimiter{'\t'};
+  int min_fields{-1};
+  int max_fields{-1};
+  bool ignore_additional_fields{true};
+  std::unordered_map<int, std::function<void(std::string*)>> field_parsers;
+};
+
 std::istream& parse_delimited_row(
-    std::istream& is,
-    vector<std::string> row,
-    ParseDelimitedRowOptions options = ParseDelimitedRowOptions{});
+    std::istream* is,
+    std::vector<std::string>* row,
+    const ParseDelimitedRowOptions& options = ParseDelimitedRowOptions{});
 
 struct MissingFields : std::logic_error {
   using std::logic_error::logic_error;
 };
 struct UnexpectedFields : std::logic_error {
   using std::logic_error::logic_error;
-};
-
-class ParseDelimitedRowOptions {
-  char delimiter{'\t'};
-  int min_fields{0};
-  int max_fields{0};
-  bool ignore_additional_fields{true};
-  std::unordered_map<int, std::function<void(std::string*)>> field_parsers;
 };
 
 } // namespace stl_ios_utilities
