@@ -35,8 +35,12 @@ std::istream& parse_delimited_row(
     vector<std::string> row,
     ParseDelimitedRowOptions options = ParseDelimitedRowOptions{});
 
-class missing_fields : std::logic_error {};
-class unexpected_fields : std::logic_error {};
+struct MissingFields : std::logic_error {
+  using std::logic_error::logic_error;
+};
+struct UnexpectedFields : std::logic_error {
+  using std::logic_error::logic_error;
+};
 
 class ParseDelimitedRowOptions {
   char delimiter{'\t'};
