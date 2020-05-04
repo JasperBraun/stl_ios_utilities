@@ -31,11 +31,11 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
-add_executable(parse_delimited_row_test
-        "${PROJECT_SOURCE_DIR}/test/parse_delimited_row_test.cc"
-        "${PROJECT_SOURCE_DIR}/src/parse_delimited_row.cc")
-target_include_directories(parse_delimited_row_test PUBLIC
+add_executable(delimited_row_parser_test
+        "${PROJECT_SOURCE_DIR}/test/delimited_row_parser_test.cc"
+        "${PROJECT_SOURCE_DIR}/src/delimited_row_parser.cc")
+target_include_directories(delimited_row_parser_test PUBLIC
         "${PROJECT_SOURCE_DIR}/include"
         #[["${PROJECT_SOURCE_DIR}/lib/<LIB1>/include"]])
-target_link_libraries(parse_delimited_row_test gtest_main)
-add_test(NAME parse_delimited_row_test COMMAND parse_delimited_row_test)
+target_link_libraries(delimited_row_parser_test gtest_main)
+add_test(NAME delimited_row_parser_test COMMAND delimited_row_parser_test)
