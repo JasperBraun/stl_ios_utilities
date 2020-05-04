@@ -68,30 +68,32 @@ options that can be specified and their default values:
   as is.
 
 ## Usage example
-Here is an example of the intended usage of the `parse_delimited_row` function
+Here is an example of the intended usage of the `delimited_row_parser` class
 (neglegting exception handling for simplicity).
 ```C++
-#include "parse_delimited_row.h"
+#include "delimited_row_parser.h"
 
 #include <fstream>
 #include <string>
 #include <vector>
 
 int main() {
+  stl_ios_utilities::DelimitedRowParser parser{};
   std::ifstream ifs{"filename"};
   std::vector<std::string> row;
-  stl_ios_util::ParseDelimitedRowOptions options{};
-  options.delimiter = ',';
-  options.min_fields = 3;
-  options.max_fields = 3;
-  options.ignore_additional_fields = true;
+  parser.delimiter = ',';
+  parser.min_fields = 3;
+  parser.max_fields = 3;
+  parser.enforce_max_fields = false;
+  parser.ignore_overfull_fields = false;
   if (ifs.is_open()) {
-    while (stl_ios_util::parse_delimited_row(ifs, row, options)) {
+    while (parser.parse_row(&ifs, &row)) {
       for (auto field : row) {
-        std::cout << ' ' << field;
+        std::cout << ' ' << field; // process contents of row here
       }
       std::cout << std::endl;
     }
+    ifs.close();
   }
   return 0;
 }
@@ -100,17 +102,18 @@ int main() {
 Here is an example input file for the usage above.
 ```
 foo,bar,baz
-one, two, three, four, five
+one, two , three, four, five
 too,few
 ```
 
 When applying the usage example code to the example input file, the first two
 lines are read properly, but the last two fields of the second line are cut off.
-Also, not that the extra space before each of the field values in the second
+Also, note that the extra space around each of the field values in the second
 line is read as part of the field value. When reading the third line, an
 exception is thrown because the minimum field number was violated.
 ```
  foo bar baz
- one  two  three
-/* exception occurs here */
+ one  two   three
+// exception of type stl_ios_utilities::DelimitedRowParser::MissingFields:
+//     missing field(s) in input data; detected only 2 out of 3 fields.
 ```
