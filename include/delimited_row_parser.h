@@ -22,7 +22,7 @@
 #define STL_IOS_UTILITIES_PARSE_DELIMTED_ROW_H_
 
 #include <functional>
-#include <istream>
+#include <istream>  
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
@@ -57,7 +57,7 @@ public:
    * @brief Exception thrown by Stream operations of the `DelimitedRowParser`
    *  class
    * 
-   * @detail Derived from *std::logic_error*.
+   * @details Derived from *std::logic_error*.
    */
   struct MissingFields : std::logic_error {
     using std::logic_error::logic_error;
@@ -66,7 +66,7 @@ public:
    * @brief Exception thrown by Stream operations of the `DelimitedRowParser`
    *  class
    * 
-   * @detail Derived from *std::logic_error*.
+   * @details Derived from *std::logic_error*.
    */
   struct UnexpectedFields : std::logic_error {
     using std::logic_error::logic_error;
@@ -336,7 +336,7 @@ public:
    * 
    * @details Reads characters from `is` until either the `\n` character is
    *  read, or the stream evaluates to `false`. Whenever a field delimiter is
-   *  read the accumulated `std::string` object is parsed using the function, if
+   *  read the accumulated *std::string* object is parsed using the function, if
    *  any, mapped to by the respective column number in `field_parsers_`. Fields
    *  replace the contents of `row`.
    *  
@@ -358,12 +358,12 @@ public:
    *  `row` is not modified.
    *  
    *  Field parsers mapped to by column numbers in `field_parsers_` may throw
-   *  exceptions. Internally, this method repeatedly uses `std::istream::get` to
+   *  exceptions. Internally, this method repeatedly uses *std::istream::get* to
    *  read the row character-by-character, which may throw exceptions (see STL
    *  docs).
    *  
    *  Concurrent access to `is` may cause data races as documented in STL docs
-   *  for `std::istream::get`.
+   *  for *std::istream::get*.
    * 
    * @param is Pointer to the input stream containing delimited data.
    * @param row *std::vector<std::string>* object in which the fields are

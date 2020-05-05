@@ -1,3 +1,13 @@
+cmake_minimum_required(VERSION 3.15)
+
+set(CMAKE_CXX_STANDARD 11)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++11")
+
+# unit tests
+project(stl_ios_utilities_test)
+include(CTest)
+
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
@@ -32,10 +42,9 @@ endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
 add_executable(delimited_row_parser_test
-        "${PROJECT_SOURCE_DIR}/test/delimited_row_parser_test.cc"
-        "${PROJECT_SOURCE_DIR}/src/delimited_row_parser.cc")
+        "${PROJECT_SOURCE_DIR}/delimited_row_parser_test.cc"
+        "${PROJECT_SOURCE_DIR}/../src/delimited_row_parser.cc")
 target_include_directories(delimited_row_parser_test PUBLIC
-        "${PROJECT_SOURCE_DIR}/include"
-        #[["${PROJECT_SOURCE_DIR}/lib/<LIB1>/include"]])
+        "${PROJECT_SOURCE_DIR}/../include")
 target_link_libraries(delimited_row_parser_test gtest_main)
 add_test(NAME delimited_row_parser_test COMMAND delimited_row_parser_test)
