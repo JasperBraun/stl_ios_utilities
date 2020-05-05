@@ -3,6 +3,12 @@
 A C++ library in which helper functions and classes to interact with the
 standard library input and output streams are collected.
 
+* [Dependencies](#dependencies)
+* [Installation instructions](#installation-instructions)
+* [CMake include instructions](#cmake-include-instructions)
+* [Unit tests](#unit-tests)
+* [API](#api)
+
 ## Dependencies
 
 This library is written for C++ 11 and uses:
@@ -68,8 +74,11 @@ ctest
 Including the `stl_ios_utilities.h` header file from this library's `include`
 directory will include all components of the library. Individual components may
 be included as well. All components are defined within the `stl_ios_utilities`
-namespace. The individual components are listed below with links to respective
-documentations.
+namespace.
+
+The individual components are listed below with links to respective
+documentations. [Detailed technical documentation for the library API can be
+accessed here](doc/doxygen/html/index.html).
 
 * [**`DelimitedRowParser`**](doc/delimited_row_parser.md): A Parser for reading
   from an *std::istream* which contains rows of delimited data.

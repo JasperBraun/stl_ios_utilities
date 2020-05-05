@@ -1,5 +1,10 @@
 # Documentation for `DelimitedRowParser`
 
+* [Summary](#summary)
+* [Basic usage](#basic-usage)
+* [Control over field numbers](#control-over-field-numbers)
+* [Field parsers](#field-parsers)
+
 ## Summary
 
 The `DelimitedRowParser::parse_row` method reads a data row of an open
@@ -9,6 +14,9 @@ Several options control the
 [minimum and maximum numbers of fields](#control-over-field-numbers) and the
 method's behavior if that expectation is violated.
 Additional functions [can be specified to parse individual fields](#field-parsers).
+
+This document serves as a primer on how to use the `DelimitedRowParser` class.
+[Detailed technical documentation for the library API can be accessed here](doc/doxygen/html/index.html).
 
 ## Basic usage
 
