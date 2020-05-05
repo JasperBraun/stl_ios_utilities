@@ -1,5 +1,7 @@
 # stl_ios_utilities
 
+v1.0.0
+
 A C++ library in which helper functions and classes to interact with the
 standard library input and output streams are collected.
 
