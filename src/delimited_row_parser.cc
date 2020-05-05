@@ -31,6 +31,7 @@ bool is_overfilled(int max_fields, int field_count) {
   return (max_fields > 0 && field_count > max_fields);
 }
 
+// if row can fit more fields, appends field to row and clears field contents
 void process_field(
     std::string* field,
     std::vector<std::string>* row,
@@ -60,6 +61,10 @@ std::istream& DelimitedRowParser::parse_row(std::istream* is,
   int field_count{1};
   char c;
 
+  // one by one reads letters and appends to field. Processes field and starts
+  // new field when delimiter encountered, and ends processing when '\n'
+  // encountered, or input stream evaluates to `false`. Checks min and max field
+  // bounds where appropriate.
   while (is->get(c)) {
     if (c == '\n') {
       break;
@@ -79,6 +84,8 @@ std::istream& DelimitedRowParser::parse_row(std::istream* is,
       }
     }
   }
+  // test min and max field bounds and process last field whose processing
+  // wasn't triggered via encountering `\n`
   if (field_count < this->min_fields_ && this->enforce_min_fields_) {
     error_message << "missing field(s) in input data; detected only "
                   << field_count << " out of " << this->min_fields_

@@ -1,4 +1,4 @@
-# Design Document for `delimited_row_parser`
+# Design Document for `DelimitedRowParser`
 
 * [Summary](#summary)
 * [Minimum required functionality](#minimum-required-functionality)
@@ -10,7 +10,7 @@ Created May 01, 2020.
 
 ## Summary
 
-The `delimited_row_parser` reads a row of an open `std::istream` object
+The `DelimitedRowParser` reads a row of an open `std::istream` object
 and parses fields separated by a delimiter into a more desirable format. A row
 ends when a newline character is read, or the stream evaluates to `false` after
 call of `std::istream::get`. Delimiter must be specifiable, and number of fields
@@ -40,7 +40,7 @@ per row must be enforcable.
 
 ## Options
 
-Options for the `parse_delimited_row` function are defined via data members and
+Options for the `parse_row` class method are defined via data members and
 can be viewed/modified via getters/setters. The following list contains the
 options that can be specified and their default values:
 * `delimiter`: the delimiting character in the input stream (*default:* `\t`).
@@ -68,10 +68,10 @@ options that can be specified and their default values:
   as is.
 
 ## Usage example
-Here is an example of the intended usage of the `delimited_row_parser` class
+Here is an example of the intended usage of the `DelimitedRowParser` class
 (neglegting exception handling for simplicity).
 ```C++
-#include "delimited_row_parser.h"
+#include "DelimitedRowParser.h"
 
 #include <fstream>
 #include <string>

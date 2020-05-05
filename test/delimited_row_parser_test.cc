@@ -24,6 +24,8 @@
 
 #include <sstream>
 
+namespace stl_ios_utilities {
+
 namespace {
 
 class DelimitedRowParserOptions : public ::testing::Test {
@@ -321,3 +323,5 @@ TEST_F(DelimitedRowParserParseRow, ExpectedFieldParsers) {
 }
 
 } // namespace
+
+} // namespace stl_ios_utilities

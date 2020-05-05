@@ -19,17 +19,22 @@ target_include_directories(<EXEC_NAME> PUBLIC
 target_link_libraries(<EXEC_NAME> PRIVATE <LIB1>)
 ]]
 
-#[[
-add_library(<LIB_NAME>
-        "${CMAKE_CURRENT_SOURCE_DIR}/src/<SRC1>.cpp")
-target_include_directories(<LIB_NAME> PUBLIC
+add_library(stl_ios_utilities
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/delimited_row_parser.cc")
+target_include_directories(stl_ios_utilities PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/include"
-        "${CMAKE_CURRENT_SOURCE_DIR}/lib/<LIB1>/include")
-target_link_libraries(<LIB_NAME> PRIVATE <LIB1>)
-]]
+        #[["${CMAKE_CURRENT_SOURCE_DIR}/lib/<LIB1>/include"]])
+#[[target_link_libraries(<LIB_NAME> PRIVATE <LIB1>)]]
+
+set_target_properties(stl_ios_utilities
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
+)
 
 # unit tests
 include(CTest)
-project(<TEST_PROJECT_NAME>)
+project(stl_ios_utilities_test)
 
 add_subdirectory(test)
