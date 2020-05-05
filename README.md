@@ -80,7 +80,7 @@ namespace.
 
 The individual components are listed below with links to respective
 documentations. [Detailed technical documentation for the library API can be
-accessed here](doxygen/html/index.html).
+accessed here](docs/doxygen/html/index.html).
 
 * [**`DelimitedRowParser`**](docs/delimited_row_parser.md): A Parser for reading
   from an *std::istream* which contains rows of delimited data.
