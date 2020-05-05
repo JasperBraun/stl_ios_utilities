@@ -3,12 +3,11 @@
 A C++ library in which helper functions and classes to interact with the
 standard library input and output streams are collected.
 
-See more documentation on the API on the [git pages site for this project](JasperBraun.github.io/stl_ios_utilities)
-
 * [Dependencies](#dependencies)
 * [Installation instructions](#installation-instructions)
 * [CMake include instructions](#cmake-include-instructions)
 * [Unit tests](#unit-tests)
+* [API](#api)
 
 ## Dependencies
 
@@ -69,3 +68,17 @@ cmake ..
 make
 ctest
 ```
+
+## API
+
+Including the `stl_ios_utilities.h` header file from this library's `include`
+directory will include all components of the library. Individual components may
+be included as well. All components are defined within the `stl_ios_utilities`
+namespace.
+
+The individual components are listed below with links to respective
+documentations. [Detailed technical documentation for the library API can be
+accessed here](doxygen/html/index.html).
+
+* [**`DelimitedRowParser`**](docs/delimited_row_parser.md): A Parser for reading
+  from an *std::istream* which contains rows of delimited data.
