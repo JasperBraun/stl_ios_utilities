@@ -20,7 +20,7 @@
 
 #include "gtest/gtest.h"
 
-#include "delimited_row_parser.h"
+#include "field_parser.h"
 
 #include <sstream>
 

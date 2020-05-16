@@ -24,5 +24,6 @@
 #define STL_IOS_UTILITIES_STL_IOS_UTILITIES_H_
 
 #include "delimited_row_parser.h"
+#include "field_parser.h"
 
 #endif // STL_IOS_UTILITIES_STL_IOS_UTILITIES_H_
