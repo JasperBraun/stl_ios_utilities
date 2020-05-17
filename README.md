@@ -5,9 +5,9 @@ v1.0.0
 A C++ library containing helper functions and classes to interact with the
 standard library input and output streams.
 
-[See the GitHub Repository for this project here.](https://github.com/JasperBraun/stl_ios_utilities.git)
+[GitHub repository.](https://github.com/JasperBraun/stl_ios_utilities.git)
 
-[]
+[GitHub Pages.](https://jasperbraun.github.io/stl_ios_utilities/)
 
 * [Dependencies](#dependencies)
 * [Installation instructions](#installation-instructions)
