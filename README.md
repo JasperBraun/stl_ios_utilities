@@ -84,7 +84,7 @@ namespace.
 
 The individual components are listed below with links to respective
 documentations. [Detailed technical documentation for the library API can be
-accessed here](https://jasperbraun.github.io/stl_ios_utilities/docs/doc/doxygen/html/index.html).
+accessed here](https://jasperbraun.github.io/stl_ios_utilities/docs/doxygen/html/index.html).
 
 * [**`DelimitedRowParser`**](docs/delimited_row_parser.md): A Parser for reading
   from an *std::istream* object which contains rows of delimited data.
