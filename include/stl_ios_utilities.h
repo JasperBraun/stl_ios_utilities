@@ -20,4 +20,10 @@
 
 // This file includes all library headers in one place.
 
+#ifndef STL_IOS_UTILITIES_STL_IOS_UTILITIES_H_
+#define STL_IOS_UTILITIES_STL_IOS_UTILITIES_H_
+
 #include "delimited_row_parser.h"
+#include "field_parser.h"
+
+#endif // STL_IOS_UTILITIES_STL_IOS_UTILITIES_H_
