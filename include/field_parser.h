@@ -26,6 +26,7 @@
 #include <functional>
 #include <istream>
 #include <string>
+#include <unordered_map>
 #include <unordered_set>
 #include <vector>
 
@@ -62,6 +63,8 @@ class FieldParser {
   ///  read *std::string* object consisting of accumulated characters is parsed
   ///  using the function, if any, mapped to by the respective column number in
   ///  `field_parsers_`. Fields read replace the contents of `fields`.
+  ///  Characters listed in data member `masked_` are skipped while reading from
+  ///  `is`.
   ///  
   ///  Enforces requested number of fields (`field_number`) by throwing an
   ///  exception of type `stl_ios_utilities::MissingFields` if fewer fields than
@@ -70,10 +73,11 @@ class FieldParser {
   ///  `fields` remains unchanged and `is` remains in a valid state. If too few
   ///  fields are read and `enforce_field_number_` is set to `false`, the fields
   ///  will be stored in `fields` unless `ignore_underfull_data_` is set to
-  ///  `true` (default). In the latter case, `fields` is not modified.
-  ///
-  ///  Characters listed in data member `masked_` are skipped while reading from
-  ///  `is`.
+  ///  `true` (default). In the latter case, `fields` is not modified. An
+  ///  exception of type `stl_ios_utilities::InvalidArgument` is thrown if a
+  ///  non-positive value for `field_number` is passed. An exception of type
+  ///  `stl_ios_utitilities::EmptyField` is thrown when a delimiter is read
+  ///  before any data was read into the current field.
   ///  
   ///  Field parsers mapped to by field numbers in `field_parsers_` may throw
   ///  exceptions depending on the function. Internally, this method repeatedly
@@ -89,7 +93,7 @@ class FieldParser {
   ///  stored, if any. 
   ///
   /// @param field_number The number of fields requested to be read into
-  ///  `fields` (**default:** 1).
+  ///  `fields` (**default:** 1). Must be positive.
   /// 
   /// @return Returns a reference to the input stream `is` after extraction of
   ///  the fields. If an exception of type `stl_ios_utilities::BaseException`
@@ -122,7 +126,7 @@ class FieldParser {
   /// @brief Returns a constant reference to the object's data member
   ///  `masked_`.
   ///
-  inline const unordered_set<char>& masked() const {return masked_;}
+  inline const std::unordered_set<char>& masked() const {return masked_;}
 
   /// @brief Returns a copy of the value of object's data member
   ///  `enforce_field_number_`.
@@ -189,15 +193,23 @@ class FieldParser {
   ///
   inline void masked(std::unordered_set<char>&& value) {masked_ = value;}
 
-  /// @brief Returns a copy of the value of object's data member
+  /// @brief Sets value of object's data member `enforce_field_number_` to
+  ///  `value`.
+  ///
+  /// @param value The new value for object's data member
   ///  `enforce_field_number_`.
   ///
-  inline bool enforce_field_number() const {return enforce_field_number_;}
+  inline void enforce_field_number(bool value) {enforce_field_number_ = value;}
 
-  /// @brief Returns a copy of the value of object's data member
+  /// @brief Sets value of object's data member `ignore_underfull_data_` to
+  ///  `value`.
+  ///
+  /// @param value The new value for object's data member
   ///  `ignore_underfull_data_`.
   ///
-  inline bool ignore_underfull_data() const {return ignore_underfull_data_;}
+  inline void ignore_underfull_data(bool value) {
+    ignore_underfull_data_ = value;
+  }
 
   /// @brief Sets value of object's data member `field_parsers_` to `value`.
   ///
@@ -224,7 +236,7 @@ class FieldParser {
   /// @param value A field parser which will be applied to the indicated field.
   ///
   inline void add_parser(int number,
-                         const std::function<void(std::string*)>>& value) {
+                         const std::function<void(std::string*)>& value) {
     field_parsers_[number] = value;
   }
   /// @}
@@ -248,3 +260,5 @@ class FieldParser {
 };
 
 } // namespace stl_ios_utilities
+
+#endif // STL_IOS_UTILITIES_FIELD_PARSER_H_

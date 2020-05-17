@@ -21,6 +21,8 @@
 #ifndef STL_IOS_UTILITIES_EXCEPTIONS_H_
 #define STL_IOS_UTILITIES_EXCEPTIONS_H_
 
+#include <stdexcept>
+
 namespace stl_ios_utilities {
 
   /// @brief Base class for exceptions thrown by entities in the
@@ -29,18 +31,26 @@ namespace stl_ios_utilities {
   /// @details Whenever possible, an exception of a derived type is thrown. Some
   ///  entities in the `stl_ios_utilities` namespace however use STL functions
   ///  and operations which may throw their own exceptions. This is documented
-  ///  for each entity separately.
+  ///  for each entity separately. This exception is never thrown, only derived
+  ///  exceptions are thrown.
   ///
-  struct BaseException : std::logic_error {
+  struct BaseException : public std::logic_error {
     using std::logic_error::logic_error;
-  }
+  };
 
   /// @brief Indicates that not enough field were read.
   ///
   /// @details Typically thrown when an operation expected to read more fields
   ///  then it was able to.
   ///
-  struct MissingFields : BaseException {
+  struct MissingFields final : public BaseException {
+    using BaseException::BaseException;
+  };
+
+  /// @brief Indicates that an empty field was read.
+  ///
+  /// @details Thrown when empty row, or empty field appears in data.
+  struct EmptyField final : public BaseException {
     using BaseException::BaseException;
   };
 
@@ -49,7 +59,23 @@ namespace stl_ios_utilities {
   /// @details Typically thrown when an operation encounters more fields then
   ///  expected.
   ///
-  struct UnexpectedFields : BaseException {
+  struct UnexpectedFields final : public BaseException {
+    using BaseException::BaseException;
+  };
+
+  /// @brief Indicates an invalid argument.
+  ///
+  /// @details Typically thrown when an invalid argument is passed to an
+  ///  operation.
+  struct InvalidArgument final : public BaseException {
+    using BaseException::BaseException;
+  };
+
+  /// @brief Indicates that a conditional evaluated to an unexpected case.
+  ///
+  /// @details Mostly for debugging. Should only be thrown when a case occurs
+  ///  that should never have appeared.
+  struct UnexpectedCase final : public BaseException {
     using BaseException::BaseException;
   };
 
