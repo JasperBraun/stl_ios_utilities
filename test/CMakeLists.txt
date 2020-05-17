@@ -48,3 +48,11 @@ target_include_directories(delimited_row_parser_test PUBLIC
         "${PROJECT_SOURCE_DIR}/../include")
 target_link_libraries(delimited_row_parser_test gtest_main)
 add_test(NAME delimited_row_parser_test COMMAND delimited_row_parser_test)
+
+add_executable(field_parser_test
+        "${PROJECT_SOURCE_DIR}/field_parser_test.cc"
+        "${PROJECT_SOURCE_DIR}/../src/field_parser.cc")
+target_include_directories(field_parser_test PUBLIC
+        "${PROJECT_SOURCE_DIR}/../include")
+target_link_libraries(field_parser_test gtest_main)
+add_test(NAME field_parser_test COMMAND field_parser_test)
