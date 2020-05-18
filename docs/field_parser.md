@@ -346,7 +346,7 @@ int main() {
   std::function<void(std::string*)> f{append_2};
   parser.add_parser(1, append_1);
   parser.add_parser(2, f);
-  parser.add_parser(3, [](std::string* s){s->append("3");});
+  parser.add_parser(3, [](std::string* s){s->append("_3");});
 
   while (parser.parse_fields(&ifs, &fields, 3)) {
     std::cout << fields[0] << ' '
