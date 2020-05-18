@@ -71,9 +71,14 @@ $(function() {
   <div class="summary">
 <a href="classstl__ios__utilities_1_1_field_parser-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">stl_ios_utilities::FieldParser Class Reference</div>  </div>
+<div class="title">stl_ios_utilities::FieldParser Class Reference<div class="ingroups"><a class="el" href="group___parsers.html">Parsers</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A Parser for reading from an <em>std::istream</em> which contains fields of delimited data.  
+ <a href="classstl__ios__utilities_1_1_field_parser.html#details">More...</a></p>
+
+<p><code>#include &quot;<a class="el" href="field__parser_8h_source.html">field_parser.h</a>&quot;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -158,7 +163,39 @@ const std::unordered_map&lt; int, std::function&lt; void(std::string *)&gt; &gt;
 <tr class="memdesc:a0e8fc6d91c0e99d3d97795d7c36418bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a field parser to object's data member <code>field_parsers</code>.  <a href="classstl__ios__utilities_1_1_field_parser.html#a0e8fc6d91c0e99d3d97795d7c36418bd">More...</a><br /></td></tr>
 <tr class="separator:a0e8fc6d91c0e99d3d97795d7c36418bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A Parser for reading from an <em>std::istream</em> which contains fields of delimited data. </p>
+<p>The <code><a class="el" href="classstl__ios__utilities_1_1_field_parser.html#a53342226d0d20efb29b976fb537f26bd" title="Reads a characters from is splitting the contents into fields.">FieldParser::parse_fields</a></code> function member allows for requesting a number of fields from the input stream. Options are specified as data members of the class.</p>
+<dl class="section user"><dt>Usage</dt><dd></dd></dl>
+<p><code>data.csv</code> </p><div class="fragment"><div class="line">foo,bar,baz,bip</div>
+<div class="line">bor,fur,tic,toc</div>
+</div><!-- fragment --><p><code>main.cc</code> </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;stl_ios_utilities.h&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;unordered_set&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">  std::ifstream ifs{<span class="stringliteral">&quot;data.csv&quot;</span>};</div>
+<div class="line">  <a class="code" href="classstl__ios__utilities_1_1_delimited_row_parser.html">stl_ios_utilities::DelimitedRowParser</a> parser;</div>
+<div class="line">  parser.delimiters(std::unordered_set&lt;char&gt;{<span class="charliteral">&#39;,&#39;</span>});</div>
+<div class="line">  std::vector&lt;std::string&gt; fields;</div>
+<div class="line">  <span class="keywordflow">if</span> (ifs.is_open()) {</div>
+<div class="line">    <span class="keywordflow">while</span> (parser.parse_fields(&amp;ifs, &amp;fields, 2)) { <span class="comment">// request 2 fields</span></div>
+<div class="line">      std::cout &lt;&lt; fields[0] &lt;&lt; <span class="charliteral">&#39; &#39;</span> &lt;&lt; fields[1] &lt;&lt; std::endl;</div>
+<div class="line">    }</div>
+<div class="line">    std::cout &lt;&lt; fields[0] &lt;&lt; <span class="charliteral">&#39; &#39;</span> &lt;&lt; fields[1] &lt;&lt; std::endl; <span class="comment">// while loop skips last field</span></div>
+<div class="line">  } <span class="keywordflow">else</span> {</div>
+<div class="line">    <span class="comment">// something went wrong opening &quot;data.csv&quot;</span></div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>Output: </p><div class="fragment"><div class="line">foo bar</div>
+<div class="line">baz bip</div>
+<div class="line">bor fur</div>
+<div class="line">tic toc</div>
+</div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a0e8fc6d91c0e99d3d97795d7c36418bd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0e8fc6d91c0e99d3d97795d7c36418bd">&#9670;&nbsp;</a></span>add_parser()</h2>
 
@@ -598,6 +635,7 @@ const std::unordered_map&lt; int, std::function&lt; void(std::string *)&gt; &gt;
 <li>src/field_parser.cc</li>
 </ul>
 </div><!-- contents -->
+<div class="ttc" id="aclassstl__ios__utilities_1_1_delimited_row_parser_html"><div class="ttname"><a href="classstl__ios__utilities_1_1_delimited_row_parser.html">stl_ios_utilities::DelimitedRowParser</a></div><div class="ttdoc">A Parser for reading from an std::istream which contains rows of delimited data.</div><div class="ttdef"><b>Definition:</b> delimited_row_parser.h:55</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

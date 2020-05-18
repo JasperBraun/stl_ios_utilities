@@ -31,6 +31,7 @@
 namespace stl_ios_utilities {
 
 /**
+ * @ingroup Parsers
  * @brief A Parser for reading from an *std::istream* which contains rows of
  *  delimited data.
  *  

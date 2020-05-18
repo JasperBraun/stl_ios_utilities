@@ -32,6 +32,54 @@
 
 namespace stl_ios_utilities {
 
+/// @ingroup Parsers
+/// @brief A Parser for reading from an *std::istream* which contains fields of
+///  delimited data.
+///  
+/// @details The `FieldParser::parse_fields` function member allows for
+///  requesting a number of fields from the input stream. Options are specified
+///  as data members of the class.
+///
+/// @usage
+///
+/// `data.csv`
+/// ```
+/// foo,bar,baz,bip
+/// bor,fur,tic,toc
+/// ```
+/// `main.cc`
+/// ```
+/// #include "stl_ios_utilities.h"
+///
+/// #include <fstream>
+/// #include <iostream>
+/// #include <string>
+/// #include <unordered_set>
+/// #include <vector>
+///
+/// int main() {
+///   std::ifstream ifs{"data.csv"};
+///   stl_ios_utilities::DelimitedRowParser parser;
+///   parser.delimiters(std::unordered_set<char>{','});
+///   std::vector<std::string> fields;
+///   if (ifs.is_open()) {
+///     while (parser.parse_fields(&ifs, &fields, 2)) { // request 2 fields
+///       std::cout << fields[0] << ' ' << fields[1] << std::endl;
+///     }
+///     std::cout << fields[0] << ' ' << fields[1] << std::endl; // while loop skips last field
+///   } else {
+///     // something went wrong opening "data.csv"
+///   }
+/// }
+/// ```
+/// Output:
+/// ```
+/// foo bar
+/// baz bip
+/// bor fur
+/// tic toc
+/// ``` 
+///
 class FieldParser {
  public:
   /// @name Constructors:

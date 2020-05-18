@@ -25,6 +25,7 @@
 
 namespace stl_ios_utilities {
 
+  /// @ingroup Exceptions
   /// @brief Base class for exceptions thrown by entities in the
   ///  `stl_ios_utilities` namespace.
   ///
@@ -38,6 +39,7 @@ namespace stl_ios_utilities {
     using std::logic_error::logic_error;
   };
 
+  /// @ingroup Exceptions
   /// @brief Indicates that not enough field were read.
   ///
   /// @details Typically thrown when an operation expected to read more fields
@@ -47,6 +49,7 @@ namespace stl_ios_utilities {
     using BaseException::BaseException;
   };
 
+  /// @ingroup Exceptions
   /// @brief Indicates that an empty field was read.
   ///
   /// @details Thrown when empty row, or empty field appears in data.
@@ -54,6 +57,7 @@ namespace stl_ios_utilities {
     using BaseException::BaseException;
   };
 
+  /// @ingroup Exceptions
   /// @brief Indicates that not enough field were read.
   ///
   /// @details Typically thrown when an operation encounters more fields then
@@ -63,6 +67,7 @@ namespace stl_ios_utilities {
     using BaseException::BaseException;
   };
 
+  /// @ingroup Exceptions
   /// @brief Indicates an invalid argument.
   ///
   /// @details Typically thrown when an invalid argument is passed to an
@@ -71,9 +76,10 @@ namespace stl_ios_utilities {
     using BaseException::BaseException;
   };
 
+  /// @ingroup Exceptions
   /// @brief Indicates that a conditional evaluated to an unexpected case.
   ///
-  /// @details Mostly for debugging. Should only be thrown when a case occurs
+  /// @details For debugging. Should only be thrown when a case occurs
   ///  that should never have appeared.
   struct UnexpectedCase final : public BaseException {
     using BaseException::BaseException;

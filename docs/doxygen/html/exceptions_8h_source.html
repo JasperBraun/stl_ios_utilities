@@ -99,40 +99,40 @@ $(function() {
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">namespace </span>stl_ios_utilities {</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structstl__ios__utilities_1_1_base_exception.html">   37</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structstl__ios__utilities_1_1_base_exception.html">BaseException</a> : <span class="keyword">public</span> std::logic_error {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">using</span> std::logic_error::logic_error;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  };</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structstl__ios__utilities_1_1_missing_fields.html">   46</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structstl__ios__utilities_1_1_missing_fields.html">MissingFields</a> final : <span class="keyword">public</span> <a class="code" href="structstl__ios__utilities_1_1_base_exception.html">BaseException</a> {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">using</span> BaseException::BaseException;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  };</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structstl__ios__utilities_1_1_empty_field.html">   53</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structstl__ios__utilities_1_1_empty_field.html">EmptyField</a> final : <span class="keyword">public</span> <a class="code" href="structstl__ios__utilities_1_1_base_exception.html">BaseException</a> {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">using</span> BaseException::BaseException;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  };</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="structstl__ios__utilities_1_1_unexpected_fields.html">   62</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structstl__ios__utilities_1_1_unexpected_fields.html">UnexpectedFields</a> final : <span class="keyword">public</span> <a class="code" href="structstl__ios__utilities_1_1_base_exception.html">BaseException</a> {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">using</span> BaseException::BaseException;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  };</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="structstl__ios__utilities_1_1_invalid_argument.html">   70</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structstl__ios__utilities_1_1_invalid_argument.html">InvalidArgument</a> final : <span class="keyword">public</span> <a class="code" href="structstl__ios__utilities_1_1_base_exception.html">BaseException</a> {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">using</span> BaseException::BaseException;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  };</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="structstl__ios__utilities_1_1_unexpected_case.html">   78</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structstl__ios__utilities_1_1_unexpected_case.html">UnexpectedCase</a> final : <span class="keyword">public</span> <a class="code" href="structstl__ios__utilities_1_1_base_exception.html">BaseException</a> {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">using</span> BaseException::BaseException;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  };</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;} <span class="comment">// namespace stl_ios_utilities</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif // STL_IOS_UTILITIES_EXCEPTIONS_H_</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structstl__ios__utilities_1_1_base_exception.html">   38</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structstl__ios__utilities_1_1_base_exception.html">BaseException</a> : <span class="keyword">public</span> std::logic_error {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">using</span> std::logic_error::logic_error;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  };</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structstl__ios__utilities_1_1_missing_fields.html">   48</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structstl__ios__utilities_1_1_missing_fields.html">MissingFields</a> final : <span class="keyword">public</span> <a class="code" href="structstl__ios__utilities_1_1_base_exception.html">BaseException</a> {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">using</span> BaseException::BaseException;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  };</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="structstl__ios__utilities_1_1_empty_field.html">   56</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structstl__ios__utilities_1_1_empty_field.html">EmptyField</a> final : <span class="keyword">public</span> <a class="code" href="structstl__ios__utilities_1_1_base_exception.html">BaseException</a> {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">using</span> BaseException::BaseException;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  };</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="structstl__ios__utilities_1_1_unexpected_fields.html">   66</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structstl__ios__utilities_1_1_unexpected_fields.html">UnexpectedFields</a> final : <span class="keyword">public</span> <a class="code" href="structstl__ios__utilities_1_1_base_exception.html">BaseException</a> {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">using</span> BaseException::BaseException;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  };</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="structstl__ios__utilities_1_1_invalid_argument.html">   75</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structstl__ios__utilities_1_1_invalid_argument.html">InvalidArgument</a> final : <span class="keyword">public</span> <a class="code" href="structstl__ios__utilities_1_1_base_exception.html">BaseException</a> {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">using</span> BaseException::BaseException;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  };</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="structstl__ios__utilities_1_1_unexpected_case.html">   84</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structstl__ios__utilities_1_1_unexpected_case.html">UnexpectedCase</a> final : <span class="keyword">public</span> <a class="code" href="structstl__ios__utilities_1_1_base_exception.html">BaseException</a> {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">using</span> BaseException::BaseException;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  };</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;} <span class="comment">// namespace stl_ios_utilities</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#endif // STL_IOS_UTILITIES_EXCEPTIONS_H_</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astructstl__ios__utilities_1_1_unexpected_fields_html"><div class="ttname"><a href="structstl__ios__utilities_1_1_unexpected_fields.html">stl_ios_utilities::UnexpectedFields</a></div><div class="ttdoc">Indicates that not enough field were read.</div><div class="ttdef"><b>Definition:</b> exceptions.h:62</div></div>
-<div class="ttc" id="astructstl__ios__utilities_1_1_base_exception_html"><div class="ttname"><a href="structstl__ios__utilities_1_1_base_exception.html">stl_ios_utilities::BaseException</a></div><div class="ttdoc">Base class for exceptions thrown by entities in the stl_ios_utilities namespace.</div><div class="ttdef"><b>Definition:</b> exceptions.h:37</div></div>
-<div class="ttc" id="astructstl__ios__utilities_1_1_missing_fields_html"><div class="ttname"><a href="structstl__ios__utilities_1_1_missing_fields.html">stl_ios_utilities::MissingFields</a></div><div class="ttdoc">Indicates that not enough field were read.</div><div class="ttdef"><b>Definition:</b> exceptions.h:46</div></div>
-<div class="ttc" id="astructstl__ios__utilities_1_1_invalid_argument_html"><div class="ttname"><a href="structstl__ios__utilities_1_1_invalid_argument.html">stl_ios_utilities::InvalidArgument</a></div><div class="ttdoc">Indicates an invalid argument.</div><div class="ttdef"><b>Definition:</b> exceptions.h:70</div></div>
-<div class="ttc" id="astructstl__ios__utilities_1_1_unexpected_case_html"><div class="ttname"><a href="structstl__ios__utilities_1_1_unexpected_case.html">stl_ios_utilities::UnexpectedCase</a></div><div class="ttdoc">Indicates that a conditional evaluated to an unexpected case.</div><div class="ttdef"><b>Definition:</b> exceptions.h:78</div></div>
-<div class="ttc" id="astructstl__ios__utilities_1_1_empty_field_html"><div class="ttname"><a href="structstl__ios__utilities_1_1_empty_field.html">stl_ios_utilities::EmptyField</a></div><div class="ttdoc">Indicates that an empty field was read.</div><div class="ttdef"><b>Definition:</b> exceptions.h:53</div></div>
+<div class="ttc" id="astructstl__ios__utilities_1_1_unexpected_fields_html"><div class="ttname"><a href="structstl__ios__utilities_1_1_unexpected_fields.html">stl_ios_utilities::UnexpectedFields</a></div><div class="ttdoc">Indicates that not enough field were read.</div><div class="ttdef"><b>Definition:</b> exceptions.h:66</div></div>
+<div class="ttc" id="astructstl__ios__utilities_1_1_base_exception_html"><div class="ttname"><a href="structstl__ios__utilities_1_1_base_exception.html">stl_ios_utilities::BaseException</a></div><div class="ttdoc">Base class for exceptions thrown by entities in the stl_ios_utilities namespace.</div><div class="ttdef"><b>Definition:</b> exceptions.h:38</div></div>
+<div class="ttc" id="astructstl__ios__utilities_1_1_missing_fields_html"><div class="ttname"><a href="structstl__ios__utilities_1_1_missing_fields.html">stl_ios_utilities::MissingFields</a></div><div class="ttdoc">Indicates that not enough field were read.</div><div class="ttdef"><b>Definition:</b> exceptions.h:48</div></div>
+<div class="ttc" id="astructstl__ios__utilities_1_1_invalid_argument_html"><div class="ttname"><a href="structstl__ios__utilities_1_1_invalid_argument.html">stl_ios_utilities::InvalidArgument</a></div><div class="ttdoc">Indicates an invalid argument.</div><div class="ttdef"><b>Definition:</b> exceptions.h:75</div></div>
+<div class="ttc" id="astructstl__ios__utilities_1_1_unexpected_case_html"><div class="ttname"><a href="structstl__ios__utilities_1_1_unexpected_case.html">stl_ios_utilities::UnexpectedCase</a></div><div class="ttdoc">Indicates that a conditional evaluated to an unexpected case.</div><div class="ttdef"><b>Definition:</b> exceptions.h:84</div></div>
+<div class="ttc" id="astructstl__ios__utilities_1_1_empty_field_html"><div class="ttname"><a href="structstl__ios__utilities_1_1_empty_field.html">stl_ios_utilities::EmptyField</a></div><div class="ttdoc">Indicates that an empty field was read.</div><div class="ttdef"><b>Definition:</b> exceptions.h:56</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

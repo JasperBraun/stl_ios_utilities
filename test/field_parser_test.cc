@@ -86,7 +86,7 @@ TEST_P(FieldParserParserFieldsTest, DefaultTest) {
 }
 
 TEST_P(FieldParserParserFieldsTest, DelimitersTest) {
-  parser.delimiters(std::unordered_set<char>{'\t', '_'});
+  parser.delimiters{'\t', '_'};
 
   execute_with_expectations(TestPattern::kDelimiters, 2);
   EXPECT_EQ(parsed_fields, GetParam().expectations.at(
