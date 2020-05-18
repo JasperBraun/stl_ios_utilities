@@ -77,7 +77,6 @@ ctest
 
 ## API
 
-Including the `stl_ios_utilities.h` header file from this library's `include`
 directory will include all components of the library. Components may be included
 individually, as well. All components are defined within the `stl_ios_utilities`
 namespace.

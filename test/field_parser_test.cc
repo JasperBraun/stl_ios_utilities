@@ -134,7 +134,7 @@ TEST_P(FieldParserParserFieldsTest, IgnoreUnderfullData) {
 
 TEST_P(FieldParserParserFieldsTest, FieldParsers) {
   std::unordered_map<int, std::function<void(std::string*)>> field_parsers{
-    {1, [](std::string* s){s->append("-TEST");}},
+    {1,[](std::string* s){s->append("-TEST");}},
   };
   parser.field_parsers(field_parsers);
 

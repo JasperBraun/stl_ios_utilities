@@ -18,7 +18,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// This file includes all library headers in one place.
+/// @defgroup Exceptions
+///  Exceptions related to the `stl_ios_utilities` library.
+
+/// @defgroup Parsers
+///  Parsers of input streams.
 
 #ifndef STL_IOS_UTILITIES_STL_IOS_UTILITIES_H_
 #define STL_IOS_UTILITIES_STL_IOS_UTILITIES_H_
