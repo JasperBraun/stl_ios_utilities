@@ -86,7 +86,7 @@ TEST_P(FieldParserParserFieldsTest, DefaultTest) {
 }
 
 TEST_P(FieldParserParserFieldsTest, DelimitersTest) {
-  parser.delimiters{'\t', '_'};
+  parser.delimiters({'\t', '_'});
 
   execute_with_expectations(TestPattern::kDelimiters, 2);
   EXPECT_EQ(parsed_fields, GetParam().expectations.at(
@@ -94,7 +94,7 @@ TEST_P(FieldParserParserFieldsTest, DelimitersTest) {
 }
 
 TEST_P(FieldParserParserFieldsTest, TerminatorsTest) {
-  parser.terminators(std::unordered_set<char>{'\n', '#'});
+  parser.terminators({'\n', '#'});
 
   execute_with_expectations(TestPattern::kTerminators, 2);
   EXPECT_EQ(parsed_fields, GetParam().expectations.at(
@@ -102,7 +102,7 @@ TEST_P(FieldParserParserFieldsTest, TerminatorsTest) {
 }
 
 TEST_P(FieldParserParserFieldsTest, MaskedTest) {
-  parser.masked(std::unordered_set<char>{'#'});
+  parser.masked({'#'});
 
   execute_with_expectations(TestPattern::kMasked, 2);
   EXPECT_EQ(parsed_fields, GetParam().expectations.at(
@@ -134,7 +134,7 @@ TEST_P(FieldParserParserFieldsTest, IgnoreUnderfullData) {
 
 TEST_P(FieldParserParserFieldsTest, FieldParsers) {
   std::unordered_map<int, std::function<void(std::string*)>> field_parsers{
-    {1, [](std::string* s){s->append("-TEST");}},
+    {1,[](std::string* s){s->append("-TEST");}},
   };
   parser.field_parsers(field_parsers);
 

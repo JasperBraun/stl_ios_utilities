@@ -57,7 +57,7 @@ Example 1:
 int main() {
   std::ifstream ifs{"data.csv"};
   stl_ios_utilities::DelimitedRowParser parser;
-  parser.delimiters(std::unordered_set<char>{','});
+  parser.delimiters({','});
   std::vector<std::string> fields;
   if (ifs.is_open()) {
     while (parser.parse_fields(&ifs, &fields)) {
@@ -67,6 +67,7 @@ int main() {
   } else {
     // something went wrong opening "data.csv"
   }
+  return 0;
 }
 
 /* Output:
@@ -108,12 +109,12 @@ int main() {
   std::ifstream ifs{"data.csv"};
   ifs.exceptions(std::ifstream::eofbit);
   stl_ios_utilities::DelimitedRowParser parser;
-  parser.delimiters(std::unordered_set<char>{','});
+  parser.delimiters({','});
   std::vector<std::string> fields;
   while (ifs.is_open()) {
-    parser.parse_fields(&ifs, &fields);
+    parser.parse_fields(&ifs, &fields); // request 1 field
     std::cout << fields[0] << ": ";
-    parser.parse_fields(&ifs, &fields, 3);
+    parser.parse_fields(&ifs, &fields, 3); // request 3 fields
     std::cout << fields[0] << ' '
               << fields[1] << ' '
               << fields[2] << std::endl;
@@ -121,33 +122,13 @@ int main() {
       ifs.close();
     }
   }
+  return 0;
 }
 
 /* Output:
 foo: bar baz bip
 bor: fur tic toc
 */
-```
-
-#### Delimiting, terminating, and masked characters
-
-The `FieldParser` class has data members which define the characters that are
-delimiter, terminators, or which are masked. A delimiter marks an end of a data
-field and the beginning of a new field, a terminator marks a position at which
-the `parse_fields` method should discontinue looking for more fields and masked
-characters are simply skipped by `parse_fields`.
-
-These characters can be set using the methods `FieldParser::delimiters`,
-`FieldParser::terminators` and `FieldParser::masked`, all of which take a
-*std::unordered_set<char>* object as argument, which will be the new set of
-characters in the respective categories. For example executing the following
-lines of code will set the delimiters to be `'\t'` and `','`, the terminators to be
-`'\n'` and `'|'` and the masked characters to be `'#'` `'$'`, `'"'`.
-```
-FieldParser parser;
-parser.delimiters{'\t', ','};
-parser.terminators{'\n', '|'};
-parser.masked{'#', '$', '"'};
 ```
 
 #### Enforcing the requested number of fields
@@ -197,14 +178,17 @@ Example 3:
 int main() {
   std::ifstream ifs{"data.csv"};
   stl_ios_utilities::DelimitedRowParser parser;
-  parser.delimiters(std::unordered_set<char>{','});
-  parser.enforce_field_number(false); // won't throw for too few fields
+  parser.delimiters({','});
   std::vector<std::string> fields;
+
+  parser.enforce_field_number(false);
+
   while (parser.parse_fields(&ifs, &fields, 3)) {
     std::cout << fields[0] << ' '
               << fields[1] << ' '
               << fields[2] << std::cout;
   }
+  return 0;
 }
 
 /* Output:
@@ -232,4 +216,150 @@ foo bar baz
 bip
 bor fur tic
 toc
+```
+
+#### Delimiting, terminating, and masked characters
+
+The `FieldParser` class has data members which define the characters that are
+delimiter, terminators, or which are masked. A delimiter marks an end of a data
+field and the beginning of a new field, a terminator marks a position at which
+the `parse_fields` method should discontinue looking for more fields and masked
+characters are simply skipped by `parse_fields`.
+
+These characters can be set using the methods `FieldParser::delimiters`,
+`FieldParser::terminators` and `FieldParser::masked`, all of which take a
+*std::unordered_set<char>* object as argument, which will be the new set of
+characters in the respective categories. For example executing the following
+lines of code will set the delimiters to be `'\t'` and `','`, the terminators to be
+`'\n'` and `'|'` and the masked characters to be `'#'` `'$'`, `'"'`.
+
+```C++
+FieldParser parser;
+parser.delimiters({'\t', ','});
+parser.terminators(std::set<char>{'\n', '|'});
+std::set<char> masked_characters{'#', '$', '"'};
+parser.masked(masked_characters);
+```
+
+To see the use of setting different delimiters, terminators and masked
+characters consider the data file `strange_data.csv` shown below as well as
+Example 4 which reads this data.
+
+`strange_data.csv`
+```
+foo_bar|baz_bip,bo$_fur|tic_toc
+top_dog|hot_rod,k#d_cat|rif_raf
+```
+
+Example 4
+```C++
+#include "stl_ios_utilities.h"
+
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <unordered_set>
+#include <vector>
+
+int main() {
+  std::ifstream ifs{"strange_data.csv"};
+  stl_ios_utilities::DelimitedRowParser parser;
+  std::vector<std::string> fields;
+
+  parser.delimiters({',', '_'});
+  parser.terminators({'\n', '|'});
+  parser.masked({'$', '#'});
+
+  while (parser.parse_fields(&ifs, &fields, 2)) {
+    std::cout << fields[0] << ' '
+              << fields[1] << std::cout;
+  }
+  return 0;
+}
+
+/* Output:
+foo bar
+baz bip
+bo fur
+tic toc
+top dog
+hot rod
+kd cat
+rif raf
+*/
+```
+
+#### Field parsers
+
+To parse fields using custom parsers, a parser function with function signature
+`void field_parser(std::string* s)` has to be added to the data member
+`field_parsers_` of `FieldParser` which is of type
+*std::unordered_map<int, std::function<void(std::string*)>>*. An object of this
+type can be set as the value of `field_parsers_` using the `field_parsers`
+function, as seen below.
+```
+FieldParser parser;
+parser.field_parsers({{1, [](std::string* s){/* do something with s*/}},
+                      {2, [](std::string* s){/* do something with s*/}}});
+```
+Starting count at 1, a field parser stored at key `i` is applies to the `i`'th
+field read by `parse_row`. If no such field parser is specified, the field is
+read as is.
+
+Field parsers can also be added individually using `FieldParser::add_parser`.
+There are multiple ways how a function can be passed to `add_parser`, some of
+which are shown in the next example.
+
+`six_column_data.csv`
+```
+foo,bar,baz,bip,bor,fur
+tic,toc,top,dog,hot,rod
+```
+
+Example 5:
+```C++
+#include "stl_ios_utilities.h"
+
+#include <fstream>
+#include <functional>
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
+
+void append_1(std::string* s) {
+  s->append("_1");
+  return;
+}
+
+void append_2(std::string* s) {
+  s->append("_2");
+}
+
+int main() {
+  std::ifstream ifs{"six_column_data.csv"};
+  stl_ios_utilities::DelimitedRowParser parser;
+  parser.delimiters({','});
+  std::vector<std::string> fields;
+
+  std::function<void(std::string*)> f{append_2};
+  parser.add_parser(1, append_1);
+  parser.add_parser(2, f);
+  parser.add_parser(3, [](std::string* s){s->append("3");});
+
+  while (parser.parse_fields(&ifs, &fields, 3)) {
+    std::cout << fields[0] << ' '
+              << fields[1] << ' '
+              << fields[2] << std::cout;
+  }
+  return 0;
+}
+
+/* Output:
+foo_1 bar_2 baz_3
+bip_1 bor_2 fur_3
+tic_1 toc_2 top_3
+dog_1 hot_2 rod_3
+*/
 ```
