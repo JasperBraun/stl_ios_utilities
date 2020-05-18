@@ -36,7 +36,7 @@ The resulting field values are stored in the `fields` and the argument
 `field_number` determines how many fields are requested to be read. This method
 returns a reference to `is` mirroring STL stream operations.
 
-#### Basic usage
+### Basic usage
 
 Here is an example of a comma-delimited data `data.csv` file and how the
 `parse_fields` method can be used to read its fields one-by-one.
@@ -92,7 +92,7 @@ reading the last field causing its return value to evaluate to `false`. For that
 reason, the body of the `while` loop does not execute when `fields` contains the
 last field.
 
-#### Request multiple fields
+### Request multiple fields
 
 A third parameter of type `int` allows to specify the number of fields
 `parse_fields` is supposed to read from the input stream. Here is an example of
@@ -134,7 +134,7 @@ bor: fur tic toc
 */
 ```
 
-#### Enforcing the requested number of fields
+### Enforcing the requested number of fields
 
 So far the provided examples heavily relied on a nice input file and knowing
 exactly how many fields are in each row of the input data. Below is a list of
@@ -221,7 +221,7 @@ bor fur tic
 toc
 ```
 
-#### Delimiting, terminating, and masked characters
+### Delimiting, terminating, and masked characters
 
 The `FieldParser` class has data members which define the characters that are
 delimiter, terminators, or which are masked. A delimiter marks an end of a data
@@ -292,7 +292,7 @@ rif raf
 */
 ```
 
-#### Field parsers
+### Field parsers
 
 To parse fields using custom parsers, a parser function with function signature
 `void field_parser(std::string* s)` has to be added to the data member
