@@ -1,9 +1,12 @@
 # Documentation for `FieldParser`
 
 * [Summary](#summary)
-* [Basic usage](#basic-usage)
-* [Control over field numbers](#control-over-field-numbers)
-* [Field parsers](#field-parsers)
+* [parse_fields](#parse-fields)
+    - [Basic usage](#basic-usage)
+    - [Request multiple fields](#request-multiple-fields)
+    - [Enforcing the requested number of fields](#enforcing-the-requested-number-of-fields)
+    - [Delimiting, terminating, and masked characters](#delimiting--terminating--and-masked-characters)
+    - [Field parsers](#field-parsers)
 
 ## Summary
 
