@@ -53,9 +53,9 @@ void process_field(
 
 } // namespace
 
-std::istream& FieldParser::parse_fields const (std::istream* is,
-                                               std::vector<std::string>* fields,
-                                               int requested_field_number) {
+std::istream& FieldParser::parse_fields (std::istream* is,
+                                         std::vector<std::string>* fields,
+                                         int requested_field_number) const {
   if (requested_field_number < 1) {
     throw InvalidArgument("Must request a positive number of fields in"
                           "`stl_ios_utilities::FieldParser::parse_fields`.");
