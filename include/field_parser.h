@@ -148,9 +148,9 @@ class FieldParser {
   ///  occurred, or only fewer fields than requested are read, then `is` is left
   ///  at the point where `parse_fields` stopped reading characters.
   ///
-  std::istream& parse_fields(std::istream* is,
-                             std::vector<std::string>* fields,
-                             int field_number = 1);
+  std::istream& parse_fields const (std::istream* is,
+                                    std::vector<std::string>* fields,
+                                    int field_number = 1);
   /// @}
 
   /// @name Accessors:
